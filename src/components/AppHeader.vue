@@ -19,21 +19,21 @@
   </header>
 </template>
 <script>
-import useModalStore from '@/stores/modal'
+import useModalStore from '@/stores/modal';
 export default {
   name: 'AppHeader',
 
   setup() {
-    const modalStore = useModalStore()
+    const modalStore = useModalStore();
 
     const toggleAuthModal = () => {
-      modalStore.isOpen = !modalStore.isOpen
-      console.log(modalStore.isOpen)
-    }
+      modalStore.isOpen = !modalStore.isOpen;
+      console.log(modalStore.isOpen);
+    };
 
     return {
       toggleAuthModal,
-    }
+    };
   },
-}
+};
 </script>
