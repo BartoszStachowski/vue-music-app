@@ -1,59 +1,59 @@
 <template>
-  <div v-if="isOpenModal" class="fixed z-10 inset-0 overflow-y-auto" id="modal">
+  <div v-if="isOpenModal" class="fixed inset-0 z-10 overflow-y-auto" id="modal">
     <div
-      class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+      class="flex min-h-screen items-end justify-center px-4 pb-20 pt-4 text-center sm:block sm:p-0"
     >
       <div class="fixed inset-0 transition-opacity">
         <div class="absolute inset-0 bg-gray-800 opacity-75"></div>
       </div>
 
-      <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+      <span class="hidden sm:inline-block sm:h-screen sm:align-middle">&#8203;</span>
 
       <div
-        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+        class="inline-block transform overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle"
       >
-        <div class="py-4 text-left px-6">
-          <div class="flex justify-between items-center pb-4">
+        <div class="px-6 py-4 text-left">
+          <div class="flex items-center justify-between pb-4">
             <p class="text-2xl font-bold">Your Account</p>
-            <div class="modal-close cursor-pointer z-50" @click="closeModal">
+            <div class="modal-close z-50 cursor-pointer" @click="closeModal">
               <i class="fas fa-times"></i>
             </div>
           </div>
 
-          <ul class="flex flex-wrap mb-4">
+          <ul class="mb-4 flex flex-wrap">
             <li class="flex-auto text-center">
               <a
-                class="block rounded py-3 px-4 transition hover:text-white text-white bg-blue-600"
+                class="block rounded bg-blue-600 px-4 py-3 text-white transition hover:text-white"
                 href="#"
                 >Login</a
               >
             </li>
             <li class="flex-auto text-center">
-              <a class="block rounded py-3 px-4 transition" href="#">Register</a>
+              <a class="block rounded px-4 py-3 transition" href="#">Register</a>
             </li>
           </ul>
 
           <!-- Login Form -->
           <form>
             <div class="mb-3">
-              <label class="inline-block mb-2">Email</label>
+              <label class="mb-2 inline-block">Email</label>
               <input
                 type="email"
-                class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
                 placeholder="Enter Email"
               />
             </div>
             <div class="mb-3">
-              <label class="inline-block mb-2">Password</label>
+              <label class="mb-2 inline-block">Password</label>
               <input
                 type="password"
-                class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
                 placeholder="Password"
               />
             </div>
             <button
               type="submit"
-              class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition hover:bg-purple-700"
+              class="block w-full rounded bg-purple-600 px-3 py-1.5 text-white transition hover:bg-purple-700"
             >
               Submit
             </button>
@@ -61,48 +61,48 @@
           <!-- Registration Form -->
           <form>
             <div class="mb-3">
-              <label class="inline-block mb-2">Name</label>
+              <label class="mb-2 inline-block">Name</label>
               <input
                 type="text"
-                class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
                 placeholder="Enter Name"
               />
             </div>
             <div class="mb-3">
-              <label class="inline-block mb-2">Email</label>
+              <label class="mb-2 inline-block">Email</label>
               <input
                 type="email"
-                class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
                 placeholder="Enter Email"
               />
             </div>
             <div class="mb-3">
-              <label class="inline-block mb-2">Age</label>
+              <label class="mb-2 inline-block">Age</label>
               <input
                 type="number"
-                class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
               />
             </div>
             <div class="mb-3">
-              <label class="inline-block mb-2">Password</label>
+              <label class="mb-2 inline-block">Password</label>
               <input
                 type="password"
-                class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
                 placeholder="Password"
               />
             </div>
             <div class="mb-3">
-              <label class="inline-block mb-2">Confirm Password</label>
+              <label class="mb-2 inline-block">Confirm Password</label>
               <input
                 type="password"
-                class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
                 placeholder="Confirm Password"
               />
             </div>
             <div class="mb-3">
-              <label class="inline-block mb-2">Country</label>
+              <label class="mb-2 inline-block">Country</label>
               <select
-                class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
               >
                 <option value="USA">USA</option>
                 <option value="Mexico">Mexico</option>
@@ -110,12 +110,12 @@
               </select>
             </div>
             <div class="mb-3 pl-6">
-              <input type="checkbox" class="w-4 h-4 float-left -ml-6 mt-1 rounded" />
+              <input type="checkbox" class="float-left -ml-6 mt-1 h-4 w-4 rounded" />
               <label class="inline-block">Accept terms of service</label>
             </div>
             <button
               type="submit"
-              class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition hover:bg-purple-700"
+              class="block w-full rounded bg-purple-600 px-3 py-1.5 text-white transition hover:bg-purple-700"
             >
               Submit
             </button>
@@ -127,11 +127,12 @@
 </template>
 <script>
 import useModalStore from '@/stores/modal';
-import { computed } from 'vue';
+import { computed, useRef } from 'vue';
 
 export default {
   name: 'AppAuth',
   setup() {
+    const tab = useRef('login');
     const modalStore = useModalStore();
 
     const isOpenModal = computed(() => modalStore.isOpen);
@@ -139,6 +140,7 @@ export default {
     const closeModal = modalStore.close;
 
     return {
+      tab,
       isOpenModal,
       closeModal,
     };
