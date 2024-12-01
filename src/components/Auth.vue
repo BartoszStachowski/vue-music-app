@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed z-10 inset-0 overflow-y-auto hidden" id="modal">
+  <div v-if="isOpenModal" class="fixed z-10 inset-0 overflow-y-auto" id="modal">
     <div
       class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
     >
@@ -15,7 +15,7 @@
         <div class="py-4 text-left px-6">
           <div class="flex justify-between items-center pb-4">
             <p class="text-2xl font-bold">Your Account</p>
-            <div class="modal-close cursor-pointer z-50">
+            <div class="modal-close cursor-pointer z-50" @click="closeModal">
               <i class="fas fa-times"></i>
             </div>
           </div>
@@ -126,8 +126,22 @@
   </div>
 </template>
 <script>
+import useModalStore from '@/stores/modal';
+import { computed } from 'vue';
+
 export default {
   name: 'AppAuth',
-}
+  setup() {
+    const modalStore = useModalStore();
+
+    const isOpenModal = computed(() => modalStore.isOpen);
+
+    const closeModal = modalStore.close;
+
+    return {
+      isOpenModal,
+      closeModal,
+    };
+  },
+};
 </script>
-<style lang=""></style>
