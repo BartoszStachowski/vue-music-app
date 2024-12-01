@@ -23,18 +23,34 @@
           <ul class="mb-4 flex flex-wrap">
             <li class="flex-auto text-center">
               <a
-                class="block rounded bg-blue-600 px-4 py-3 text-white transition hover:text-white"
+                class="block rounded px-4 py-3 transition"
                 href="#"
-                >Login</a
+                :class="{
+                  'bg-blue-600 text-white hover:text-white': tab === 'login',
+                  'hover:text-blue-600': tab === 'register',
+                }"
+                @click.prevent="tab = 'login'"
               >
+                Login
+              </a>
             </li>
             <li class="flex-auto text-center">
-              <a class="block rounded px-4 py-3 transition" href="#">Register</a>
+              <a
+                class="block rounded px-4 py-3 transition"
+                href="#"
+                :class="{
+                  'bg-blue-600 text-white hover:text-white': tab === 'register',
+                  'hover:text-blue-600': tab === 'login',
+                }"
+                @click.prevent="tab = 'register'"
+              >
+                Register
+              </a>
             </li>
           </ul>
 
           <!-- Login Form -->
-          <form>
+          <form v-show="tab === 'login'">
             <div class="mb-3">
               <label class="mb-2 inline-block">Email</label>
               <input
@@ -47,6 +63,7 @@
               <label class="mb-2 inline-block">Password</label>
               <input
                 type="password"
+                autocomplete="current-password"
                 class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
                 placeholder="Password"
               />
@@ -59,7 +76,7 @@
             </button>
           </form>
           <!-- Registration Form -->
-          <form>
+          <form v-show="tab === 'register'">
             <div class="mb-3">
               <label class="mb-2 inline-block">Name</label>
               <input
@@ -127,12 +144,12 @@
 </template>
 <script>
 import useModalStore from '@/stores/modal';
-import { computed, useRef } from 'vue';
+import { computed, ref } from 'vue';
 
 export default {
   name: 'AppAuth',
   setup() {
-    const tab = useRef('login');
+    const tab = ref('login');
     const modalStore = useModalStore();
 
     const isOpenModal = computed(() => modalStore.isOpen);
