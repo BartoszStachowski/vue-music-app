@@ -87,18 +87,10 @@
               <AppInput label="Confirm Password" type="password" placeholder="Confirm Password" />
             </div>
             <div class="mb-3">
-              <label class="mb-2 inline-block">Country</label>
-              <select
-                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
-              >
-                <option value="USA">USA</option>
-                <option value="Mexico">Mexico</option>
-                <option value="Germany">Germany</option>
-              </select>
+              <AppSelect label="Country" :options="countriesOptions" />
             </div>
             <div class="mb-3 pl-6">
-              <input type="checkbox" class="float-left -ml-6 mt-1 h-4 w-4 rounded" />
-              <label class="inline-block">Accept terms of service</label>
+              <AppInput type="checkbox" label="Accept terms of service" />
             </div>
             <button
               type="submit"
@@ -115,12 +107,14 @@
 <script>
 import useModalStore from '@/stores/modal';
 import AppInput from '@/components/AppInput.vue';
+import AppSelect from '@/components/AppSelect.vue';
 import { computed, ref } from 'vue';
 
 export default {
   name: 'AppAuth',
   components: {
     AppInput,
+    AppSelect,
   },
   setup() {
     const tab = ref('login');
@@ -129,9 +123,11 @@ export default {
     const isOpenModal = computed(() => modalStore.isOpen);
 
     const closeModal = modalStore.close;
+    const countriesOptions = ['USA', 'Mexico', 'Germany'];
 
     return {
       tab,
+      countriesOptions,
       isOpenModal,
       closeModal,
     };
