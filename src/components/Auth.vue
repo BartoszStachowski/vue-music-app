@@ -52,20 +52,14 @@
           <!-- Login Form -->
           <form v-show="tab === 'login'">
             <div class="mb-3">
-              <label class="mb-2 inline-block">Email</label>
-              <input
-                type="email"
-                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
-                placeholder="Enter Email"
-              />
+              <AppInput type="email" label="Email" placeholder="Enter Email" />
             </div>
             <div class="mb-3">
-              <label class="mb-2 inline-block">Password</label>
-              <input
+              <AppInput
+                label="Password"
                 type="password"
-                autocomplete="current-password"
-                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
                 placeholder="Password"
+                autocomplete="current-password"
               />
             </div>
             <button
@@ -78,43 +72,19 @@
           <!-- Registration Form -->
           <form v-show="tab === 'register'">
             <div class="mb-3">
-              <label class="mb-2 inline-block">Name</label>
-              <input
-                type="text"
-                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
-                placeholder="Enter Name"
-              />
+              <AppInput label="Name" placeholder="Enter Name" />
             </div>
             <div class="mb-3">
-              <label class="mb-2 inline-block">Email</label>
-              <input
-                type="email"
-                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
-                placeholder="Enter Email"
-              />
+              <AppInput label="Email" type="email" placeholder="Enter Email" />
             </div>
             <div class="mb-3">
-              <label class="mb-2 inline-block">Age</label>
-              <input
-                type="number"
-                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
-              />
+              <AppInput label="Age" type="number" />
             </div>
             <div class="mb-3">
-              <label class="mb-2 inline-block">Password</label>
-              <input
-                type="password"
-                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
-                placeholder="Password"
-              />
+              <AppInput label="Password" type="password" placeholder="Password" />
             </div>
             <div class="mb-3">
-              <label class="mb-2 inline-block">Confirm Password</label>
-              <input
-                type="password"
-                class="block w-full rounded border border-gray-300 px-3 py-1.5 text-gray-800 transition duration-500 focus:border-black focus:outline-none"
-                placeholder="Confirm Password"
-              />
+              <AppInput label="Confirm Password" type="password" placeholder="Confirm Password" />
             </div>
             <div class="mb-3">
               <label class="mb-2 inline-block">Country</label>
@@ -144,10 +114,14 @@
 </template>
 <script>
 import useModalStore from '@/stores/modal';
+import AppInput from '@/components/AppInput.vue';
 import { computed, ref } from 'vue';
 
 export default {
   name: 'AppAuth',
+  components: {
+    AppInput,
+  },
   setup() {
     const tab = ref('login');
     const modalStore = useModalStore();
