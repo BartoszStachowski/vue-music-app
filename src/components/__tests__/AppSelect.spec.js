@@ -12,6 +12,7 @@ describe('AppSelect Component', () => {
         
         console.log(wrapper.html())
         const optionsEl = wrapper.findAllComponents('option');
+      
         
         expect(wrapper.text()).toContain('Option 2')
         expect(wrapper.text()).not.toContain('Option 3')
