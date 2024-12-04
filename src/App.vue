@@ -268,11 +268,10 @@
   <Auth />
 </template>
 
-<script>
+<script setup>
+import { defineAsyncComponent } from 'vue';
+
 import AppHeader from '@/components/AppHeader.vue';
-import Auth from '@/components/Auth.vue';
-export default {
-  name: 'App',
-  components: { AppHeader, Auth },
-};
+
+const Auth = defineAsyncComponent(() => import('@/components/Auth.vue'));
 </script>
