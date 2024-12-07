@@ -233,5 +233,6 @@
 </template>
 
 <script setup>
-import Auth from '@/components/Auth.vue';
+import { defineAsyncComponent } from 'vue';
+const Auth = defineAsyncComponent(() => import('@/components/Auth.vue'));
 </script>
