@@ -11,5 +11,8 @@ export default defineStore('modal', {
     close() {
       this.isOpen = false;
     },
+    open() {
+      this.isOpen = true;
+    },
   },
 });

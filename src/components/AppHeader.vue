@@ -1,12 +1,12 @@
 <template>
   <header id="header" class="bg-gray-700">
-    <nav class="container mx-auto flex justify-start items-center py-5 px-4">
-      <a class="text-white font-bold uppercase text-2xl mr-4" href="#">Music</a>
+    <nav class="container flex items-center justify-start px-4 py-5 mx-auto">
+      <a class="mr-4 text-2xl font-bold text-white uppercase" href="#">Music</a>
 
-      <div class="flex flex-grow items-center">
+      <div class="flex items-center flex-grow">
         <ul class="flex flex-row mt-1">
           <li>
-            <a class="px-2 text-white" href="#" @click.prevent="toggleAuthModal">
+            <a class="px-2 text-white" href="#" @click.prevent="modalClose">
               Login / Register
             </a>
           </li>
@@ -25,14 +25,10 @@ export default {
 
   setup() {
     const modalStore = useModalStore();
-
-    const toggleAuthModal = () => {
-      modalStore.isOpen = !modalStore.isOpen;
-      console.log(modalStore.isOpen);
-    };
+    const modalClose = modalStore.open;
 
     return {
-      toggleAuthModal,
+      modalClose,
     };
   },
 };
