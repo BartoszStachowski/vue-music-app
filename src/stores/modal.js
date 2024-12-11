@@ -10,9 +10,11 @@ export default defineStore('modal', {
   actions: {
     close() {
       this.isOpen = false;
+      document.body.classList.remove('body-lock');
     },
     open() {
       this.isOpen = true;
+      document.body.classList.add('body-lock');
     },
   },
 });
