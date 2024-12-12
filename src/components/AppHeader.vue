@@ -6,7 +6,7 @@
       <div class="flex items-center flex-grow">
         <ul class="flex flex-row mt-1">
           <li>
-            <a class="px-2 text-white" href="#" @click.prevent="modalClose">
+            <a class="px-2 text-white" href="#" @click.prevent="modalOpen">
               Login / Register
             </a>
           </li>
@@ -25,10 +25,10 @@ export default {
 
   setup() {
     const modalStore = useModalStore();
-    const modalClose = modalStore.open;
+    const modalOpen = modalStore.open;
 
     return {
-      modalClose,
+      modalOpen,
     };
   },
 };

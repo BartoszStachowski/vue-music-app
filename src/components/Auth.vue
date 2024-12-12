@@ -1,8 +1,5 @@
 <template>
   <AppModal @close="closeModal">
-
-
-
     <ul class="flex flex-wrap mb-4">
       <li class="flex-auto text-center">
         <a class="block px-4 py-3 transition rounded" href="#" :class="{
