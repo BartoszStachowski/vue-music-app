@@ -6,7 +6,7 @@
       <div class="flex items-center flex-grow">
         <ul class="flex flex-row mt-1">
           <li>
-            <a class="px-2 text-white" href="#" @click.prevent="modalOpen">
+            <a class="px-2 text-white" href="#" @click="openModal">
               Login / Register
             </a>
           </li>
@@ -18,18 +18,14 @@
     </nav>
   </header>
 </template>
-<script>
+<script setup>
 import useModalStore from '@/stores/modal';
-export default {
-  name: 'AppHeader',
 
-  setup() {
-    const modalStore = useModalStore();
-    const modalOpen = modalStore.open;
 
-    return {
-      modalOpen,
-    };
-  },
+const modalStore = useModalStore();
+const openModal = () => {
+  modalStore.open('authModal');
 };
+
+
 </script>

@@ -2,19 +2,17 @@ import { defineStore } from 'pinia';
 
 export default defineStore('modal', {
   state: () => ({
-    isOpen: false,
+    modals: {},
   }),
   getters: {
-    hiddenClass: (state) => (!state.isOpen ? 'hidden' : ''),
+    isOpen: (state) => (modalName) => !!state.modals[modalName],
   },
   actions: {
-    close() {
-      this.isOpen = false;
-      document.body.classList.remove('body-lock');
+    open(modalName) {
+      this.modals[modalName] = true;
     },
-    open() {
-      this.isOpen = true;
-      document.body.classList.add('body-lock');
-    },
+    close(modalName) {
+      this.modals[modalName] = false;
+    }
   },
 });

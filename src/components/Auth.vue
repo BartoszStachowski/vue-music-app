@@ -99,7 +99,9 @@ const registerErrorMessage = ref('')
 const modalStore = useModalStore();
 
 
-const closeModal = modalStore.close;
+const closeModal = () => {
+  modalStore.close('authModal');
+}
 
 const countriesOptions = ['USA', 'Mexico', 'Germany'];
 
