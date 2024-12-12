@@ -229,10 +229,15 @@
     </div>
   </div>
 
-  <Auth />
+  <Auth v-if="isOpenModal" />
 </template>
 
 <script setup>
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent, computed } from 'vue';
+import useModalStore from '@/stores/modal'
 const Auth = defineAsyncComponent(() => import('@/components/Auth.vue'));
+
+const modalStore = useModalStore();
+const isOpenModal = computed(() => modalStore.isOpen);
+
 </script>

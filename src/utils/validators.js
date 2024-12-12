@@ -2,7 +2,7 @@ export const validateEmail = (email) => {
   const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if (!email.trim()) {
-    return 'Email is empty';
+    return 'Email is required';
   }
 
   if (!pattern.test(email)) {
@@ -14,7 +14,7 @@ export const validateEmail = (email) => {
 
 export const validatePassword = (password) => {
   if (!password.trim()) {
-    return 'Password is empty';
+    return 'Password is required';
   }
 
   if (password.length < 6) {
@@ -23,3 +23,17 @@ export const validatePassword = (password) => {
 
   return '';
 };
+
+export const validateRequired = (value, name) => {
+  if (!value || !value.trim()) {
+    return `${name} is required`
+  }
+  return ''
+}
+
+export const validateCompareValues = (value1, value2, name) => {
+  if (value1 !== value2) {
+    return `${name} has difference`
+  }
+  return ''
+}
