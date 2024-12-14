@@ -21,11 +21,8 @@
 <script setup>
 import useModalStore from '@/stores/modal';
 
-
 const modalStore = useModalStore();
 const openModal = () => {
   modalStore.open('authModal');
 };
-
-
 </script>

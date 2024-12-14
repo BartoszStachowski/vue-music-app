@@ -79,7 +79,10 @@ import AppSelect from '@/components/AppSelect.vue';
 import AppModal from '@/components/AppModal.vue';
 import { ref, onUnmounted } from 'vue';
 import { validateEmail, validatePassword, validateRequired, validateCompareValues } from '@/utils/validators';
+import { useSignUpEmailPassword } from '@nhost/vue';
 
+// store
+const modalStore = useModalStore();
 
 const tab = ref('login');
 // login
@@ -96,7 +99,8 @@ const registerCountry = ref('');
 const registerTermsAccept = ref(null);
 const registerErrorMessage = ref('')
 
-const modalStore = useModalStore();
+const { signUpEmailPassword } = useSignUpEmailPassword();
+
 
 
 const closeModal = () => {
@@ -124,7 +128,7 @@ const handleLogin = () => {
   console.log(obj);
 };
 
-const handleRegister = () => {
+const handleRegister = async () => {
   registerErrorMessage.value = ''
 
   const obj = {
@@ -155,6 +159,26 @@ const handleRegister = () => {
   if (validateRequired(obj.termsAccept)) {
     return registerErrorMessage.value = validateRequired(obj.termsAccept, 'Terms')
   }
+
+  try {
+    const response = await signUpEmailPassword(obj.email, obj.password, {
+      metadata: {
+        name: obj.name,
+        age: obj.age || null,
+        country: obj.country || null,
+        termsAccept: obj.termsAccept,
+      }
+    })
+
+    if (response.error) {
+      throw new Error(response.error.message)
+    }
+
+  } catch (error) {
+    registerErrorMessage.value = error.message
+    console.error(error)
+  }
+
   console.log(obj);
 };
 
