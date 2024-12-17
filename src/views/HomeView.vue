@@ -235,7 +235,7 @@
 <script setup>
 import { defineAsyncComponent } from 'vue';
 import useModalStore from '@/stores/modal'
-const Auth = defineAsyncComponent(() => import('@/components/Auth.vue'));
+const Auth = defineAsyncComponent(() => import('@/components/auth/Auth.vue'));
 
 const modalStore = useModalStore();
 
