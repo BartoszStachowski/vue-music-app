@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="handleRegister">
-    <h1 v-if="statusSuccess" class="mb-3 bg-green-700 py-3 text-center font-medium text-white">
+    <h1 v-if="isSuccess" class="mb-3 bg-green-700 py-3 text-center font-medium text-white">
       Success! Your account has been created.
     </h1>
     <div class="mb-3">
@@ -68,7 +68,7 @@ import {
   validateCompareValues,
 } from '@/utils/validators';
 
-import { useSignUpEmailPassword } from '@nhost/vue';
+import { useSignUpEmailPassword, useUserData } from '@nhost/vue';
 
 const countriesOptions = ['USA', 'Mexico', 'Germany'];
 const name = ref('');
@@ -145,6 +145,9 @@ const handleRegister = async () => {
     return;
   }
 };
+
+const userData = useUserData();
+console.log(userData);
 </script>
 
 <!-- <template>
