@@ -4,11 +4,9 @@
 </template>
 
 <script setup>
+import { useUserHandler } from '@/composables/useUserHandler';
 import AppHeader from '@/components/AppHeader.vue';
 
-import { useAuthenticated, useUserData } from '@nhost/vue';
-import useUserStore from '@/stores/user';
-
-const isAuthenticated = useAuthenticated();
-console.log('isAuthenticated', isAuthenticated);
+// get userData and set status
+useUserHandler();
 </script>

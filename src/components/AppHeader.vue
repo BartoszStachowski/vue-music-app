@@ -5,7 +5,7 @@
 
       <div class="flex flex-grow items-center">
         <ul class="mt-1 flex flex-row">
-          <li v-if="!hiddenLoginOrRegister">
+          <li v-if="!isUserLoggedIn">
             <a class="px-2 text-white" href="#" @click="openModal"> Login / Register </a>
           </li>
           <li>
@@ -17,13 +17,14 @@
   </header>
 </template>
 <script setup>
+import { storeToRefs } from 'pinia';
 import useModalStore from '@/stores/modal';
 import useUserStore from '@/stores/user';
 
 const userStore = useUserStore();
-const { userLoggedIn: hiddenLoginOrRegister } = userStore;
-
 const modalStore = useModalStore();
+const { isUserLoggedIn } = storeToRefs(userStore);
+
 const openModal = () => {
   modalStore.open('authModal');
 };
