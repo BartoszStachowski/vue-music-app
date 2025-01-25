@@ -51,9 +51,11 @@
     </div>
     <button
       type="submit"
-      class="block w-full rounded bg-purple-600 px-3 py-1.5 text-white transition hover:bg-purple-700"
+      class="flex h-10 w-full items-center justify-center rounded bg-purple-600 px-3 py-1.5 text-white transition hover:bg-purple-700"
+      :disabled="isLoading"
     >
-      Submit
+      <Loader v-if="isLoading" />
+      <span v-else>Submit</span>
     </button>
   </form>
 </template>
@@ -68,7 +70,10 @@ import {
   validateCompareValues,
 } from '@/utils/validators';
 
-import { useSignUpEmailPassword, useUserData } from '@nhost/vue';
+import { useSignUpEmailPassword } from '@nhost/vue';
+import { defineEmits } from 'vue';
+
+const emit = defineEmits(['authSuccess']);
 
 const countriesOptions = ['USA', 'Mexico', 'Germany'];
 const name = ref('');
@@ -79,20 +84,16 @@ const confirmPassword = ref('');
 const country = ref('');
 const termAccept = ref(null);
 const errorMsg = ref('');
-const statusSuccess = ref(false);
 
-// const { signUpEmailPassword, isSuccess } = useSignUpEmailPassword();
-const { signUpEmailPassword, needsEmailVerification, isLoading, isSuccess, isError, error } =
-  useSignUpEmailPassword();
+const { signUpEmailPassword, isLoading, isSuccess, error } = useSignUpEmailPassword();
 
 watchEffect(() => {
-  console.log('State changes:', {
-    needsEmailVerification: needsEmailVerification.value,
-    isLoading: isLoading.value,
-    isSuccess: isSuccess.value,
-    isError: isError.value,
-    error: error.value,
-  });
+  if (error.value) {
+    errorMsg.value = error.value.message;
+  }
+  if (isSuccess.value) {
+    emit('authSuccess');
+  }
 });
 
 const handleRegister = async () => {
@@ -131,106 +132,9 @@ const handleRegister = async () => {
         termAccept: termAccept.value,
       },
     });
-
-    // if (response.error?.status === 0) {
-    //   throw new Error('An unexpected error occured. Please try again leater.');
-    // }
-
-    // if (response.error) {
-    //   throw new Error(response.error.message);
-    // }
   } catch (error) {
-    errorMsg.value = error.message;
     console.error(error);
     return;
   }
 };
-
-const userData = useUserData();
-console.log(userData);
 </script>
-
-<!-- <template>
-  <form @submit.prevent="handleFormSubmit">
-    <div>
-      <label for="email">Email:</label>
-      <input v-model="email" id="email" type="email" placeholder="Enter your email" required />
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input
-        v-model="password"
-        id="password"
-        type="password"
-        placeholder="Enter your password"
-        required
-      />
-    </div>
-    <button type="submit" :disabled="isLoading">Sign Up</button>
-
-    <p v-if="isError" class="error">Error: {{ errorMessage }}</p>
-    <p v-if="isSuccess" class="success">
-      Registration successful! Please check your email to verify your account.
-    </p>
-    <p v-if="needsEmailVerification" class="info">
-      Registration successful, but you need to verify your email. Check your inbox.
-    </p>
-  </form>
-</template>
-
-<script setup>
-import { ref, watchEffect } from 'vue';
-import { useSignUpEmailPassword } from '@nhost/vue';
-
-// Reaktywne zmienne
-const email = ref('');
-const password = ref('');
-const errorMessage = ref('');
-
-// Wyciągnięcie funkcji i zmiennych stanu z `useSignUpEmailPassword`
-const { signUpEmailPassword, needsEmailVerification, isLoading, isSuccess, isError, error } =
-  useSignUpEmailPassword();
-
-// // Obserwowanie zmian w `isError` i `error`
-// watch(isError, (newValue) => {
-//   if (newValue) {
-//     errorMessage.value = error.value?.message || 'Something went wrong. Please try again later.';
-//     console.error('Error occurred:', error.value);
-//   } else {
-//     errorMessage.value = '';
-//   }
-// });
-
-// Obserwowanie zmian w `isSuccess`
-watchEffect(() => {
-  console.log(
-    needsEmailVerification.value,
-    isLoading.value,
-    isSuccess.value,
-    isError.value,
-    error.value,
-  );
-});
-
-// Funkcja obsługująca wysyłanie formularza
-const handleFormSubmit = async () => {
-  errorMessage.value = ''; // Reset komunikatu błędu
-  console.log('Submitting registration...');
-  await signUpEmailPassword(email.value, password.value);
-  console.log('Registration request completed.');
-};
-</script>
-
-<style scoped>
-.error {
-  color: red;
-}
-
-.success {
-  color: green;
-}
-
-.info {
-  color: blue;
-}
-</style> -->

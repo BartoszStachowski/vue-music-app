@@ -65,7 +65,11 @@ const handleLogin = async () => {
     return (errorMsg.value = validatePassword(password.value));
   }
 
-  await signInEmailPassword(email.value, password.value);
+  try {
+    await signInEmailPassword(email.value, password.value);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 onUnmounted(() => {

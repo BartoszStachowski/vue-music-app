@@ -1,7 +1,6 @@
 import { watch } from 'vue';
 import { useUserData } from '@nhost/vue';
 import useUserStore from '@/stores/user';
-import user from '@/stores/user';
 
 export function useUserHandler() {
   const userData = useUserData();
