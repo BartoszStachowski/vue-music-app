@@ -63,6 +63,7 @@
 import { ref, watchEffect } from 'vue';
 import AppInput from '@/components/AppInput.vue';
 import AppSelect from '@/components/AppSelect.vue';
+import Loader from '@/components/Loader.vue';
 import {
   validateEmail,
   validatePassword,

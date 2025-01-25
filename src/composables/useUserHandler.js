@@ -12,6 +12,7 @@ export function useUserHandler() {
       userStore.setLoggedInStatus(true);
     } else {
       userStore.clearUserData();
+      userStore.setLoggedInStatus(false);
     }
   };
 
