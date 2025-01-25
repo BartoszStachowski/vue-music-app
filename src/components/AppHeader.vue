@@ -8,7 +8,7 @@
           <li v-if="!isUserLoggedIn">
             <a class="px-2 text-white" href="#" @click="openModal"> Login / Register </a>
           </li>
-          <li>
+          <li v-if="isUserLoggedIn">
             <a class="px-2 text-white" href="#">Manage</a>
           </li>
           <li v-if="isUserLoggedIn">
