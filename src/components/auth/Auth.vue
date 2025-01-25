@@ -30,10 +30,10 @@
     </ul>
 
     <!-- Login Form -->
-    <LoginForm v-show="tab === 'login'" />
+    <LoginForm v-show="tab === 'login'" @authSuccess="closeModal" />
 
     <!-- Registration Form -->
-    <RegisterForm v-show="tab === 'register'" />
+    <RegisterForm v-show="tab === 'register'" @authSuccess="closeModal" />
   </AppModal>
 </template>
 <script setup>

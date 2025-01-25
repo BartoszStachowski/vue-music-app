@@ -23,37 +23,52 @@
     </div>
     <button
       type="submit"
-      class="block w-full rounded bg-purple-600 px-3 py-1.5 text-white transition hover:bg-purple-700"
+      class="flex h-10 w-full items-center justify-center rounded bg-purple-600 px-3 py-1.5 text-white transition hover:bg-purple-700"
+      :disabled="isLoading"
     >
-      Submit
+      <Loader v-if="isLoading" />
+      <span v-else>Submit</span>
     </button>
   </form>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref, watchEffect, onUnmounted, defineEmits } from 'vue';
 import AppInput from '@/components/AppInput.vue';
+import Loader from '@/components/Loader.vue';
 import { validateEmail, validatePassword } from '@/utils/validators';
+import { useSignInEmailPassword } from '@nhost/vue';
+
+const emit = defineEmits(['authSuccess']);
 
 const email = ref('');
 const password = ref('');
 const errorMsg = ref('');
+const { signInEmailPassword, isLoading, isSuccess, error } = useSignInEmailPassword();
 
-const handleLogin = () => {
+watchEffect(() => {
+  if (isSuccess.value) {
+    emit('authSuccess');
+  }
+  if (error.value) {
+    errorMsg.value = error.value.message;
+  }
+});
+
+const handleLogin = async () => {
   errorMsg.value = '';
 
-  const obj = {
-    email: email.value,
-    password: password.value,
-  };
-
-  if (validateEmail(obj.email)) {
-    return (errorMsg.value = validateEmail(obj.email));
+  if (validateEmail(email.value)) {
+    return (errorMsg.value = validateEmail(email.value));
   }
 
-  if (validatePassword(obj.password)) {
-    return (errorMsg.value = validatePassword(obj.password));
+  if (validatePassword(password.value)) {
+    return (errorMsg.value = validatePassword(password.value));
   }
-  // TODO: connect with nhost
-  console.log(obj);
+
+  await signInEmailPassword(email.value, password.value);
 };
+
+onUnmounted(() => {
+  errorMsg.value = '';
+});
 </script>
