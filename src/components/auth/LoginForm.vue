@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="handleLogin">
     <div class="mb-3">
-      <AppInput
+      <Input
         v-model="email"
         type="email"
         label="Email"
@@ -10,7 +10,7 @@
       />
     </div>
     <div class="mb-3">
-      <AppInput
+      <Input
         v-model="password"
         label="Password"
         type="password"
@@ -33,7 +33,7 @@
 </template>
 <script setup>
 import { ref, watchEffect, onUnmounted, defineEmits } from 'vue';
-import AppInput from '@/components/AppInput.vue';
+import Input from '@/components/Input.vue';
 import Loader from '@/components/Loader.vue';
 import { validateEmail, validatePassword } from '@/utils/validators';
 import { useSignInEmailPassword } from '@nhost/vue';

@@ -1,17 +1,17 @@
 <template>
   <form @submit.prevent="handleRegister">
-    <h1 v-if="isSuccess" class="mb-3 bg-green-700 py-3 text-center font-medium text-white">
+    <h1 v-if="isSuccess" class="py-3 mb-3 font-medium text-center text-white bg-green-700">
       Success! Your account has been created.
     </h1>
     <div class="mb-3">
-      <AppInput
+      <Input
         v-model="name"
         label="Name<span class='text-red-500'>*</span>"
         placeholder="Enter Name"
       />
     </div>
     <div class="mb-3">
-      <AppInput
+      <Input
         v-model="email"
         label="Email<span class='text-red-500'>*</span>"
         type="email"
@@ -20,10 +20,10 @@
       />
     </div>
     <div class="mb-3">
-      <AppInput v-model="age" label="Age" type="number" />
+      <Input v-model="age" label="Age" type="number" />
     </div>
     <div class="mb-3">
-      <AppInput
+      <Input
         v-model="password"
         label="Password<span class='text-red-500'>*</span>"
         type="password"
@@ -32,7 +32,7 @@
       />
     </div>
     <div class="mb-3">
-      <AppInput
+      <Input
         v-model="confirmPassword"
         label="Confirm Password<span class='text-red-500'>*</span>"
         type="password"
@@ -41,10 +41,10 @@
       />
     </div>
     <div class="mb-3">
-      <AppSelect v-model="country" label="Country" :options="countriesOptions" />
+      <Select v-model="country" label="Country" :options="countriesOptions" />
     </div>
-    <div class="mb-3 pl-6">
-      <AppInput v-model="termAccept" type="checkbox" label="Accept terms of service" />
+    <div class="pl-6 mb-3">
+      <Input v-model="termAccept" type="checkbox" label="Accept terms of service" />
     </div>
     <div v-if="errorMsg" class="mb-3 text-center text-red-500">
       {{ errorMsg }}
@@ -61,8 +61,8 @@
 </template>
 <script setup>
 import { ref, watchEffect } from 'vue';
-import AppInput from '@/components/AppInput.vue';
-import AppSelect from '@/components/AppSelect.vue';
+import Input from '@/components/Input.vue';
+import Select from '@/components/Select.vue';
 import Loader from '@/components/Loader.vue';
 import {
   validateEmail,

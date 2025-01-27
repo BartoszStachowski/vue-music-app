@@ -1,9 +1,9 @@
 <template>
-  <AppModal @close="closeModal">
-    <ul class="mb-4 flex flex-wrap">
+  <Modal @close="closeModal">
+    <ul class="flex flex-wrap mb-4">
       <li class="flex-auto text-center">
         <a
-          class="block rounded px-4 py-3 transition"
+          class="block px-4 py-3 transition rounded"
           href="#"
           :class="{
             'bg-blue-600 text-white hover:text-white': tab === 'login',
@@ -16,7 +16,7 @@
       </li>
       <li class="flex-auto text-center">
         <a
-          class="block rounded px-4 py-3 transition"
+          class="block px-4 py-3 transition rounded"
           href="#"
           :class="{
             'bg-blue-600 text-white hover:text-white': tab === 'register',
@@ -34,11 +34,11 @@
 
     <!-- Registration Form -->
     <RegisterForm v-show="tab === 'register'" @authSuccess="closeModal" />
-  </AppModal>
+  </Modal>
 </template>
 <script setup>
 import useModalStore from '@/stores/modal';
-import AppModal from '@/components/AppModal.vue';
+import Modal from '@/components/Modal.vue';
 import LoginForm from '@/components/auth/LoginForm.vue';
 import RegisterForm from '@/components/auth/RegisterForm.vue';
 import { ref } from 'vue';
